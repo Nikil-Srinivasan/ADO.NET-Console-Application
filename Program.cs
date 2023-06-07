@@ -1,5 +1,6 @@
 ﻿using System.Data.SqlClient;
 using System.Threading;
+using Spectre.Console;
 class Program
 {
     static void Main()
@@ -33,6 +34,7 @@ class Program
                 switch (choice)
                 {
                     case 1:
+                        // Create Table
                         Console.Write("\nEnter table name: ");
                         string tableNameCreate = Console.ReadLine();
                         Console.Write("Enter column count: ");
@@ -68,6 +70,7 @@ class Program
                         break;
 
                     case 2:
+                        // Insert Data
                         Console.Write("\nEnter table name: ");
                         string tableNameInsert = Console.ReadLine();
                         command = new SqlCommand($"SELECT * FROM {tableNameInsert}", connection);
@@ -80,6 +83,7 @@ class Program
                             columnNamesInsert.Add(insertReader.GetName(i));
                         }
                         insertReader.Close();
+
                         // Collecting values for each column
                         var columnValuesInsert = new List<string>();
                         foreach (var columnName in columnNamesInsert)
@@ -97,7 +101,9 @@ class Program
                         Console.WriteLine("|| Values inserted successfully ||");
                         Console.WriteLine("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
                         break;
+
                     case 3:
+                        // Read Table
                         Console.Write("\nEnter table name: ");
                         string tableNameRead = Console.ReadLine();
                         command = new SqlCommand($"SELECT * FROM {tableNameRead}", connection);
@@ -131,7 +137,9 @@ class Program
                         Console.WriteLine("|| Table readed successfully  ||");
                         Console.WriteLine("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
                         break;
+
                     case 4:
+                        // Update Data
                         Console.Write("\nEnter table name: ");
                         string tableNameUpdate = Console.ReadLine();
                         Console.Write("Enter column for condition: ");
@@ -149,7 +157,9 @@ class Program
                         Console.WriteLine("|| Table updated successfully ||");
                         Console.WriteLine("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
                         break;
+
                     case 5:
+                        // Delete Table
                         Console.Write("\nEnter table name: ");
                         string tableNameDelete = Console.ReadLine();
                         command = new SqlCommand($"DROP TABLE IF EXISTS {tableNameDelete}", connection);
@@ -160,6 +170,7 @@ class Program
                         break;
 
                     case 6:
+                        // Display Available Tables
                         command = new SqlCommand("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'", connection);
                         SqlDataReader tablesReader = command.ExecuteReader();
 
@@ -174,6 +185,7 @@ class Program
                         break;
 
                     case 7:
+                        // Close Application
                         isRunning = false;
                         break;
 
@@ -195,6 +207,7 @@ class Program
             if (connection != null)
             {
                 connection.Close();
+                AnsiConsole.Write(new FigletText("Application Closed...").LeftJustified().Color(Color.DarkOrange));
             }
 
         }

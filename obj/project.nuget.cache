@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kC7+jAD17lej+5vLAOISSehtrGUH8ydUmyQQOQWVUYLTzkuNYMvRRYUcBCPX+Qy1g7zv+CWn3Ibx2nNCslFdIQ==",
+  "dgSpecHash": "0G6SVPxM3dtqU4HduErcnctpY6/QFM4GYO/TFRRtCccziCVqSinjOFmK5zF4Nkz1rTxC+LXRb6eaFn8fu6VGlw==",
   "success": true,
   "projectFilePath": "D:\\Files\\Kovai.co\\C#\\ADO-Net\\ADO-Net.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,9 @@
     "C:\\Users\\atb18\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\atb18\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\atb18\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\atb18\\.nuget\\packages\\spectre.console\\0.47.0\\spectre.console.0.47.0.nupkg.sha512",
     "C:\\Users\\atb18\\.nuget\\packages\\system.data.sqlclient\\4.8.5\\system.data.sqlclient.4.8.5.nupkg.sha512",
+    "C:\\Users\\atb18\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
     "C:\\Users\\atb18\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\atb18\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
   ],
