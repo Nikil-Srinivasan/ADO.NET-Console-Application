@@ -43,7 +43,9 @@ class Program
                             columnDetails += $"{columnName} {columnType}({columnSize})";
                         }
                         else
-                            columnDetails += $"{columnName} {columnType})";
+                        {
+                            columnDetails += $"{columnName} {columnType}";
+                        }
                         if (i < columnCount - 1)
                             columnDetails += ", ";
                     }
@@ -52,6 +54,7 @@ class Program
                     command.ExecuteNonQuery();
                     Console.WriteLine("\nTable created successfully");
                     break;
+
 
                 case 2:
                     Console.Write("\nEnter table name: ");
