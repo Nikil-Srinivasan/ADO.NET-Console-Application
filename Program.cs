@@ -62,7 +62,9 @@ class Program
 
                         command = new SqlCommand($"CREATE TABLE {tableNameCreate} ({columnDetails})", connection);
                         command.ExecuteNonQuery();
-                        Console.WriteLine("\nTable created successfully");
+                        Console.WriteLine("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+                        Console.WriteLine("|| Table created successfully ||");
+                        Console.WriteLine("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
                         break;
 
                     case 2:
@@ -78,7 +80,6 @@ class Program
                             columnNamesInsert.Add(insertReader.GetName(i));
                         }
                         insertReader.Close();
-
                         // Collecting values for each column
                         var columnValuesInsert = new List<string>();
                         foreach (var columnName in columnNamesInsert)
@@ -92,7 +93,9 @@ class Program
                         string insertQuery = $"INSERT INTO {tableNameInsert} ({string.Join(", ", columnNamesInsert)}) VALUES ('{string.Join("', '", columnValuesInsert)}')";
                         command = new SqlCommand(insertQuery, connection);
                         command.ExecuteNonQuery();
-                        Console.WriteLine("\nValues inserted into table successfully");
+                        Console.WriteLine("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+                        Console.WriteLine("|| Values inserted successfully ||");
+                        Console.WriteLine("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
                         break;
                     case 3:
                         Console.Write("\nEnter table name: ");
@@ -124,39 +127,45 @@ class Program
                         }
 
                         readReader.Close();
-                        Console.WriteLine("\nTable read successfully");
+                        Console.WriteLine("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+                        Console.WriteLine("|| Table readed successfully  ||");
+                        Console.WriteLine("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
                         break;
                     case 4:
                         Console.Write("\nEnter table name: ");
                         string tableNameUpdate = Console.ReadLine();
-                        Console.Write("Enter column name for condition: ");
+                        Console.Write("Enter column for condition: ");
                         string conditionColumn = Console.ReadLine();
                         Console.Write($"Enter value for {conditionColumn}: ");
                         string conditionValue = Console.ReadLine();
-                        Console.Write("Enter column name to update: ");
+                        Console.Write("Enter column to update: ");
                         string updateColumn = Console.ReadLine();
-                        Console.Write($"Enter new value for {updateColumn}: ");
+                        Console.Write($"Enter new value for '{updateColumn}': ");
                         string updateValue = Console.ReadLine();
 
                         command = new SqlCommand($"UPDATE {tableNameUpdate} SET {updateColumn} = '{updateValue}' WHERE {conditionColumn} = '{conditionValue}'", connection);
                         command.ExecuteNonQuery();
-                        Console.WriteLine("\nTable updated successfully");
+                        Console.WriteLine("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+                        Console.WriteLine("|| Table updated successfully ||");
+                        Console.WriteLine("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
                         break;
                     case 5:
                         Console.Write("\nEnter table name: ");
                         string tableNameDelete = Console.ReadLine();
                         command = new SqlCommand($"DROP TABLE IF EXISTS {tableNameDelete}", connection);
                         command.ExecuteNonQuery();
-                        Console.WriteLine("\nTable deleted successfully");
+                        Console.WriteLine("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+                        Console.WriteLine("|| Table deleted successfully ||");
+                        Console.WriteLine("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
                         break;
 
                     case 6:
                         command = new SqlCommand("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'", connection);
                         SqlDataReader tablesReader = command.ExecuteReader();
 
-                        Console.WriteLine("\n-----------------");
+                        Console.WriteLine("\n=================");
                         Console.WriteLine("Available Tables:");
-                        Console.WriteLine("-----------------");
+                        Console.WriteLine("=================\n");
                         while (tablesReader.Read())
                         {
                             Console.WriteLine(tablesReader["TABLE_NAME"]);
@@ -174,7 +183,6 @@ class Program
                 }
                 // Delay before displaying choices again
                 Thread.Sleep(2000);
-                // Console.Clear();
             }
         }
         catch (Exception e)
@@ -187,7 +195,6 @@ class Program
             if (connection != null)
             {
                 connection.Close();
-                Console.Clear();
             }
 
         }
