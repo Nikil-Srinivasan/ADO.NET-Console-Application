@@ -48,7 +48,7 @@ class Program
                             string columnName = Console.ReadLine();
                             Console.Write($"Enter {columnName} type: ");
                             string columnType = Console.ReadLine();
-                            if (columnType == "VARCHAR")
+                            if (columnType == "VARCHAR" || columnType == "varchar")
                             {
                                 Console.Write($"Enter {columnType} size: ");
                                 string columnSize = Console.ReadLine();
@@ -95,6 +95,7 @@ class Program
 
                         // Generating SQL query dynamically
                         string insertQuery = $"INSERT INTO {tableNameInsert} ({string.Join(", ", columnNamesInsert)}) VALUES ('{string.Join("', '", columnValuesInsert)}')";
+                        // INSERT INTO tbl_name (col_name_1, col_name_2, ..., col_name_n) VALUES (value_1, value_2, ... value_n)
                         command = new SqlCommand(insertQuery, connection);
                         command.ExecuteNonQuery();
                         Console.WriteLine("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
@@ -105,34 +106,37 @@ class Program
                     case 3:
                         // Read Table
                         Console.Write("\nEnter table name: ");
-                        string tableNameRead = Console.ReadLine();
-                        command = new SqlCommand($"SELECT * FROM {tableNameRead}", connection);
-                        SqlDataReader readReader = command.ExecuteReader();
+                        string tableNameToRead = Console.ReadLine();
+                        command = new SqlCommand($"SELECT * FROM {tableNameToRead}", connection);
+                        SqlDataReader reader = command.ExecuteReader();
 
                         // Collecting column names
-                        var columnNamesRead = new List<string>();
-                        for (int i = 0; i < readReader.FieldCount; i++)
+                        var columnNamesToRead = new List<string>();
+                        for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            columnNamesRead.Add(readReader.GetName(i));
+                            columnNamesToRead.Add(reader.GetName(i));
                         }
 
                         // Formatting table details
+                        // Display column names
                         Console.WriteLine();
-                        foreach (var columnName in columnNamesRead)
+                        foreach (var columnName in columnNamesToRead)
                         {
                             Console.Write($"{columnName,-15}");
                         }
                         Console.WriteLine("\n");
-                        while (readReader.Read())
+
+                        // Display column values
+                        while (reader.Read())
                         {
-                            foreach (var columnName in columnNamesRead)
+                            foreach (var columnName in columnNamesToRead)
                             {
-                                Console.Write($"{readReader[columnName],-15}");
+                                Console.Write($"{reader[columnName],-15}");
                             }
                             Console.WriteLine();
                         }
 
-                        readReader.Close();
+                        reader.Close();
                         Console.WriteLine("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
                         Console.WriteLine("|| Table readed successfully  ||");
                         Console.WriteLine("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
